@@ -12,5 +12,9 @@ namespace Models
         public int SalesPersonId { get; set; }
         public string SPName { get; set; }
         public string LoginPwd { get; set; }
+
+        // extention
+
+        public int LoginLogId { get; set; }
     }
 }

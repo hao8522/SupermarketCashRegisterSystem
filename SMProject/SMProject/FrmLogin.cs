@@ -59,7 +59,19 @@ namespace SMProject
                 else
                 {
                     Program.objCurrentPerson = objPerson;
+
+                    Program.objCurrentPerson.LoginLogId = new SalesPersonsService().WriteLoginLog(
+                        
+                      new LoginLogs()
+                    {
+                        LoginId = Convert.ToInt32(this.txtLoginId.Text.Trim()),
+                        SPName= objPerson.SPName,
+                        ServerName= Dns.GetHostName(),
+
+                    });
+
                     this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
 
             }
