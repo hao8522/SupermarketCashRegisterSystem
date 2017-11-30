@@ -80,7 +80,7 @@ namespace DAL
         #endregion
 
         #region data base connection with parameter
-        public int Update(string sql, SqlParameter[] param){
+        public static int Update(string sql, SqlParameter[] param){
 
             SqlConnection conn = new SqlConnection(connString);
             SqlCommand cmd = new SqlCommand(sql,conn);

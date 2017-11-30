@@ -82,5 +82,23 @@ namespace DAL
        }
 
        #endregion
+
+       #region Write Exit Log
+
+       public int WriteExitLog(int logId, DateTime dt)
+       {
+
+           string sql = "update LoginLogs set ExitTime=@ExitTime where LogId=@LogId";
+
+           SqlParameter[] param = new SqlParameter[]{
+
+               new SqlParameter("@ExitTime",dt),
+               new SqlParameter("@LogId",logId),
+           };
+
+           return SQLHelper.Update(sql, param);
+       }
+
+       #endregion
    }
 }

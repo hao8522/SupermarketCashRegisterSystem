@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Models;
+using DAL;
 
 
 namespace SMProject
@@ -45,11 +47,31 @@ namespace SMProject
 
         #endregion
 
-
+        private SalesPersonsService objSalesPerService = new SalesPersonsService();
         public FrmSaleManage()
         {
             InitializeComponent();
          
+        }
+
+        private void FrmSaleManage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+           DialogResult result= MessageBox.Show("Are you sure to logout?","Warning",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+
+           if (result == DialogResult.Cancel)
+           {
+               e.Cancel = true;
+           }
+           else
+           {
+
+               DateTime dt = SQLHelper.GetServerTime();
+
+               objSalesPerService.WriteExitLog(Program.objCurrentPerson.LoginLogId,dt);
+           }
+
+
         }
      
     }

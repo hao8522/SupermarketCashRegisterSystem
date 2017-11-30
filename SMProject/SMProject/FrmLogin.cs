@@ -17,6 +17,7 @@ namespace SMProject
 {
     public partial class FrmLogin : Form
     {
+        private SalesPersonsService objSalesPersonService = new SalesPersonsService();
         public FrmLogin()
         {
             InitializeComponent();
@@ -48,7 +49,7 @@ namespace SMProject
 
             try
             {
-                objPerson = new SalesPersonsService().UserLogin(objPerson);
+                objPerson = objSalesPersonService.UserLogin(objPerson);
 
 
                 if (objPerson == null)
@@ -60,7 +61,7 @@ namespace SMProject
                 {
                     Program.objCurrentPerson = objPerson;
 
-                    Program.objCurrentPerson.LoginLogId = new SalesPersonsService().WriteLoginLog(
+                    Program.objCurrentPerson.LoginLogId = objSalesPersonService.WriteLoginLog(
                         
                       new LoginLogs()
                     {
