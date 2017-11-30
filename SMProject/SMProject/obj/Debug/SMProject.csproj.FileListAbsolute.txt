@@ -49,3 +49,7 @@ C:\GitProject\SupermarketCashRegisterSystem\SMProject\SMProject\obj\Debug\SMProj
 C:\GitProject\SupermarketCashRegisterSystem\SMProject\SMProject\obj\Debug\SMProject.FrmSaleManage.resources
 C:\GitProject\SupermarketCashRegisterSystem\SMProject\SMProject\obj\Debug\SMProject.Properties.Resources.resources
 C:\GitProject\SupermarketCashRegisterSystem\SMProject\SMProject\obj\Debug\SMProject.csproj.GenerateResource.Cache
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\SMProject\bin\Debug\DAL.dll
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\SMProject\bin\Debug\Models.dll
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\SMProject\bin\Debug\DAL.pdb
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\SMProject\bin\Debug\Models.pdb

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-
+using Models;
 
 namespace SMProject
 {
@@ -16,10 +16,24 @@ namespace SMProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmSaleManage());
+
+            FrmLogin objFrmLogin = new FrmLogin();
+            DialogResult result = objFrmLogin.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                Application.Run(new FrmSaleManage());
+            }
+            else
+            {
+                Application.Exit();
+            }
+
+            
         }
 
 
+        public static SalesPerson objCurrentPerson = null;
 
     }
 }

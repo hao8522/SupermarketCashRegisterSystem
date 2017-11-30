@@ -1,0 +1,7 @@
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\DAL\bin\Debug\DAL.dll
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\DAL\bin\Debug\DAL.pdb
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\DAL\bin\Debug\Models.dll
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\DAL\bin\Debug\Models.pdb
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\DAL\obj\Debug\DAL.dll
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\DAL\obj\Debug\DAL.pdb

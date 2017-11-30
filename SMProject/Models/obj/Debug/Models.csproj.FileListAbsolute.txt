@@ -1,0 +1,5 @@
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\Models\bin\Debug\Models.dll
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\Models\bin\Debug\Models.pdb
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\Models\obj\Debug\Models.dll
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\Models\obj\Debug\Models.pdb

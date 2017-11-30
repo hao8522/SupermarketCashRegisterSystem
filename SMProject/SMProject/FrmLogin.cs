@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 
 using System.Net;
+using Models;
+using DAL;
 
 
 
@@ -22,7 +24,54 @@ namespace SMProject
         //Login button
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            #region data validation
+
+            if (this.txtLoginId.Text.Trim().Length == 0 && this.txtLoignPwd.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("LoginId or Password can not be null","Warning");
+                return;
+            }
+
+
+
+            #endregion
+
+            #region database connection
+
+            SalesPerson objPerson = new SalesPerson()
+            {
+                SalesPersonId = Convert.ToInt32(this.txtLoginId.Text.Trim()),
+                LoginPwd = this.txtLoignPwd.Text.Trim()
+            };
+
           
+
+            try
+            {
+                objPerson = new SalesPersonsService().UserLogin(objPerson);
+
+
+                if (objPerson == null)
+                {
+                    MessageBox.Show("The LoginId or Password is incorrect ","Warning");
+                    return;
+                }
+                else
+                {
+                    Program.objCurrentPerson = objPerson;
+                    this.DialogResult = DialogResult.OK;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Sales Person Login error:"+ex.Message);
+            }
+
+
+            #endregion
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
