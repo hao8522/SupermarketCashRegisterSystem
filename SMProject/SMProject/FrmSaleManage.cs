@@ -51,7 +51,19 @@ namespace SMProject
         public FrmSaleManage()
         {
             InitializeComponent();
+            this.lblSalePerson.Text = Program.objCurrentPerson.SPName;
+            this.lblSerialNum.Text = this.CreateSerialNumber();
          
+        }
+
+        private string CreateSerialNumber()
+        {
+            string serialNumber = SQLHelper.GetServerTime().ToString("yyyyMMddHHmmssms");
+            Random r = new Random();
+            serialNumber += r.Next(10, 99);
+
+            return serialNumber;
+
         }
 
         private void FrmSaleManage_FormClosing(object sender, FormClosingEventArgs e)
