@@ -141,6 +141,7 @@
             this.dgvProdutList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProdutList.Size = new System.Drawing.Size(918, 527);
             this.dgvProdutList.TabIndex = 53;
+            this.dgvProdutList.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvProdutList_RowsRemoved);
             // 
             // Num
             // 
@@ -336,6 +337,7 @@
             this.txtProductId.Name = "txtProductId";
             this.txtProductId.Size = new System.Drawing.Size(223, 29);
             this.txtProductId.TabIndex = 0;
+            this.txtProductId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtProductId_KeyDown);
             // 
             // label2
             // 
