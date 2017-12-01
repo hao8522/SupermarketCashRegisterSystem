@@ -156,6 +156,11 @@ namespace SMProject
                 this.dgvProdutList.DataSource = null;
                 this.dgvProdutList.DataSource = this.bs;
             }
+            else if (e.KeyValue == 112)
+            {
+                // press F1 key to check out
+                Balance();
+            }
         }
 
         #region Add Product to List
@@ -213,6 +218,120 @@ namespace SMProject
 
             return true;
             
+        }
+
+        #endregion
+
+
+        private void txtOther_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                this.txtProductId.Focus();
+            }
+
+
+        }
+
+        #region check out
+
+        private void Balance()
+        {
+            FrmBalance objFrmBalance = new FrmBalance(this.lblTotalMoney.Text.Trim());
+
+            if (objFrmBalance.ShowDialog() != DialogResult.OK)
+            {
+                if (objFrmBalance.Tag.ToString() == "F4")
+                {
+                    // cancel the check out
+                    ResetForm();
+                }
+                else if (objFrmBalance.Tag.ToString() == "F5")
+                {
+                    // not enough money ,buy some products
+                    this.txtProductId.Focus();
+                }
+                else
+                {
+                    // check out
+                    Members objMember = null;
+                    if (objFrmBalance.Tag.ToString().Contains("|"))
+                    {
+                        string[] info = objFrmBalance.Tag.ToString().Split('|');
+                        this.lblReceivedMoney.Text = info[0];
+
+                        objMember = new Members()
+                        {
+                            MemberId = info[1],
+                            Points = (int)(Convert.ToDouble(this.lblTotalMoney.Text) / 10.0)
+                        };
+                    }
+                    else
+                    {
+
+                        this.lblReceivedMoney.Text = objFrmBalance.Tag.ToString();
+                    }
+
+                    // display change
+                    this.lblReturnMoney.Text = (Convert.ToDecimal(this.lblReceivedMoney.Text.Trim()) - Convert.ToDecimal(this.lblTotalMoney.Text)).ToString();
+
+
+                    SalesListMain objSaleslist = new SalesListMain()
+                    {
+                        SerialNum = this.lblSerialNum.Text.Trim(),
+                        TotalMoney = Convert.ToDecimal(this.lblTotalMoney.Text.Trim()),
+                        RealReceive = Convert.ToDecimal(this.lblReceivedMoney.Text.Trim()),
+                        ReturnMoney = Convert.ToDecimal(this.lblReturnMoney.Text.Trim()),
+                        SalesPersonId = Program.objCurrentPerson.SalesPersonId
+
+                    };
+
+
+                    foreach (Products item in this.productsList)
+                    {
+                        objSaleslist.ListDetail.Add(new SalesListDetail()
+                        {
+
+                            SerialNum = this.lblSerialNum.Text.Trim(),
+                            ProductId = item.ProductId,
+                            ProductName = item.ProductName,
+                            Quantity = item.Quantity,
+                            UnitPrice = item.UnitPrice,
+                            Discount = item.Discount,
+                            SubTotalMoney = item.SubTotal
+
+                        });
+                    }
+
+
+                    // save to db
+                    try
+                    {
+                        objProService.SaveSaleInfo(objSaleslist,objMember);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show("Save data Error"+ex.Message);
+                        return;
+                    }
+
+                    ResetForm();
+
+                }
+            }
+        }
+        #endregion
+
+        #region reset form
+
+        private void ResetForm()
+        {
+            this.lblSerialNum.Text = this.CreateSerialNumber();
+            this.dgvProdutList.DataSource = null;
+            this.productsList.Clear();
+            this.lblReceivedMoney.Text = "0.00";
+            this.txtProductId.Focus();
         }
 
         #endregion

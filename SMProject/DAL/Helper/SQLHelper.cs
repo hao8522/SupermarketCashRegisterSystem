@@ -170,5 +170,54 @@ namespace DAL
         {
             return Convert.ToDateTime(SQLHelper.GetSingleResult("select getdate()"));
         }
+
+        public static bool UpdateByTransaction(List<string> sqlList)
+        {
+            SqlConnection conn = new SqlConnection(connString);
+
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = conn;
+
+            try
+            {
+                conn.Open();
+
+                cmd.Transaction = conn.BeginTransaction();
+
+              
+
+
+                foreach (var itemsql in sqlList)
+                {
+                    cmd.CommandText = itemsql;
+                    cmd.ExecuteNonQuery();
+                }
+
+                cmd.Transaction.Commit();
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                if (cmd.Transaction != null)
+                {
+                    cmd.Transaction.Rollback();
+
+                }
+                throw new Exception("update by transaction"+ex.Message);
+            }
+            finally
+            {
+
+                if (cmd.Transaction != null)
+                {
+                    cmd.Transaction = null;
+                }
+
+                conn.Close();
+            }
+        }
     }
 }

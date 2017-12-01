@@ -2,3 +2,4 @@ C:\GitProject\SupermarketCashRegisterSystem\SMProject\Models\bin\Debug\Models.dl
 C:\GitProject\SupermarketCashRegisterSystem\SMProject\Models\bin\Debug\Models.pdb
 C:\GitProject\SupermarketCashRegisterSystem\SMProject\Models\obj\Debug\Models.dll
 C:\GitProject\SupermarketCashRegisterSystem\SMProject\Models\obj\Debug\Models.pdb
+C:\GitProject\SupermarketCashRegisterSystem\SMProject\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
